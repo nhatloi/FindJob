@@ -1,0 +1,124 @@
+﻿@model FindJob.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="~/assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+
+</head>
+
+<body class="">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Profile</h4>
+                        <p class="card-category">Complete your profile</p>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Name</label>
+                                        <input type="text" class="form-control" value="@Model.HoTen" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Username</label>
+                                        <input type="text" class="form-control" value="@Model.TaiKhoan" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Phone Number</label>
+                                        <input type="email" class="form-control" value="@Model.DienThoai" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Email address</label>
+                                        <input type="email" class="form-control" value="@Model.Email" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Experience</label>
+                                        <input type="text" class="form-control" value="@Model.NamKinhNghiem" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Adress</label>
+                                        <input type="text" class="form-control" value="@Model.DiaChi" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">gender</label>
+                                        <input type="text" class="form-control" value="@(Model.GioiTinh==1?"Male":"Female")" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Birth Day</label>
+                                        <input type="text" class="form-control" value="@String.Format("{0:dd/MM/yyyy}", Convert.ToDateTime(Model.NgaySinh))" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Level</label>
+                                        <input type="text" class="form-control" value="@Model.TrinhDo" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="update" value="@(Model.TrangThai==1?0:1)" />
+                            <input type="hidden" name="id" value="@Model.MaKH" />
+                            <button class="btn btn-primary" type="submit">@(Model.TrangThai==1?"Block":"Active")</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                            <img class="img" src="~/assets/img/avatar/@Model.AnhDaiDien" />
+                    </div>
+                    <div class="card-body">
+                        <embed src="~/assets/img/cv/@Model.FileCV" style="height:280px;width:200px">
+                        <div>
+                            <a href="~/assets/img/cv/@Model.FileCV" class="btn btn-primary btn-round">Zoom</a>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

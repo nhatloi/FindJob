@@ -1,0 +1,79 @@
+﻿@using FindJob.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<FindJob.Models.TinTimViec>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutCompany.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div style="height:500px">
+    <table class="table" border="1">
+        <tr>
+            <th style="width:150px">
+                Ngành làm việc
+            </th>
+            <th style="width:300px">
+                Vị trí làm việc
+            </th>
+            <th style="width:80px">
+                Kiểu công việc
+            </th>
+            <th style="width:130px;text-align:center">
+                Lương
+            </th>
+            <th style="width:20px">
+                Yêu cầu kinh nghiệm
+            </th>
+            <th>
+                Ngày Đăng Tin
+            </th>
+            <th>
+                Hạn nộp hồ sơ
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NganhNghe.TenNganh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ViTriLamViec)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KieuCV)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.LuongToiThieu) - @Html.DisplayFor(modelItem => item.LuongToiDa)
+                </td>
+
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.KinhNghiem)
+                </td>
+                <td>
+                    @Html.FormatValue(item.NgayDangTin, "{0:dd/MM/yyyy}")
+                </td>
+                <td>
+                    @Html.FormatValue(item.HanNopHoSo, "{0:dd/MM/yyyy}")
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MaTin }) |
+                    @Html.ActionLink("Apply List", "Details", new { id = item.MaTin }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MaTin })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<div style="text-align:center;font-size:30px">
+    Trang @(Model.PageCount< Model.PageNumber? 0:Model.PageNumber)/@Model.PageCount
+    
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>

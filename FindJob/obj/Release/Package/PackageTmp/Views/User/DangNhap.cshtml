@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/assets/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(false)
+                <form class="login100-form validate-form">
+                    <span class="login100-form-logo">
+                        <i class="zmdi zmdi-landscape"></i>
+                    </span>
+
+                    <span class="login100-form-title p-b-34 p-t-27">
+                        Log in
+                    </span>
+                    <div class="row">
+                        <div class="input-group col-6">
+                            <label class="radio-container">
+                                Customer
+                                <input type="radio" value="0" name="type" checked>
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="input-group col-6">
+                            <label class="radio-container">
+                                Company
+                                <input type="radio" value="1" name="type">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    @if (Request.Cookies["TenDN"] != null && Request.Cookies["MatKhau"] != null)
+                    {
+                        <div class="wrap-input100 validate-input" data-validate="Enter username">
+                            <input class="input100" type="text" name="TenDN" placeholder="Username" value="@Request.Cookies["TenDN"].Value">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter password">
+                            <input class="input100" type="password" name="MatKhau" placeholder="Password" value="@Request.Cookies["MatKhau"].Value">
+                            <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="wrap-input100 validate-input" data-validate="Enter username">
+                            <input class="input100" type="text" name="TenDN" placeholder="Username">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter password">
+                            <input class="input100" type="password" name="MatKhau" placeholder="Password">
+                            <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                        </div>
+                    }
+                    <div class="contact100-form-checkbox">
+                        <div style="font-style:italic" />
+                        @Html.CheckBox("Remember")
+                        Nhớ thông tin đăng nhập
+                    </div>
+                    @ViewBag.ThongBao
+                    <div class="container-login100-form-btn p-t-40">
+                        <button class="login100-form-btn" type="submit">
+                            Login
+                        </button>
+                    </div>
+                    <div style="text-align:center">
+                        <div>
+                            <a class="txt1" href="@Url.Action("DangKy", "User")">
+                                Register
+                            </a>
+                        </div>
+                        <div>
+                            <a class="txt1" href="@Url.Action("ResetPassword","User")">
+                                Forgot Password?
+                            </a>
+                        </div>
+
+                    </div>
+                </form>
+                }
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

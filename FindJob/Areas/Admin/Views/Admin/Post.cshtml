@@ -1,0 +1,96 @@
+﻿@using FindJob.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<FindJob.Models.TinTimViec>
+
+
+
+@{
+    ViewBag.Title = "Post";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-8">
+        <h2>Post</h2>
+    </div>
+    <div class="col-4">
+        <form class="navbar-form">
+            <div class="input-group no-border">
+                <input type="text" value="" name="search" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                    <i class="material-icons">search</i>
+                    <div class="ripple-container"></div>
+                </button>
+            </div>
+        </form>
+        <div style="text-align:center">
+            <div style="font-size:30px;text-align:center">
+                @Html.PagedListPager(Model, page => Url.Action("Post", new { page = page }))
+            </div>
+        </div>
+
+    </div>
+</div>
+<div>
+    <table class="table" style="text-align:center" border="1">
+        <tr>
+            <th style="width:200px">
+                Công ty
+            </th>
+            <th style="width:150px">
+                Chuyên ngành
+            </th>
+            <th style="width:200px">
+                Vị trí công việc
+            </th>
+            <th style="width:200px">
+                Thời gian đăng bài
+            </th>
+            <th>
+                Hạn cuối nộp hồ sơ
+            </th>
+            <th>
+                Trạng thái duyệt
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.CONGTY.TenCty
+                </td>
+                <td>
+                    @if (string.IsNullOrEmpty(item.MaNganh.ToString()))
+                    {
+
+
+                        <span>Chưa chọn</span>
+                    }
+                    else
+                    {
+                        @item.NganhNghe.TenNganh
+                    }
+                </td>
+                <td>
+                    @item.ViTriLamViec
+                </td>
+                <td>
+                    @item.NgayDangTin
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HanNopHoSo)
+                </td>
+                <td>
+                    @(item.TrangThai== 1?"Active":"Not Active")
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "PostDetails", new { id = item.MaTin }) |
+                    @Html.ActionLink("Delete", "PostDelete", new { id = item.MaTin })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

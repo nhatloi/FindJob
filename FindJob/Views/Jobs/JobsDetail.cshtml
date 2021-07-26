@@ -1,0 +1,150 @@
+﻿@model FindJob.Models.TinTimViec
+@{
+    ViewBag.Title = "JobsDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+</head>
+
+<body>
+
+    <header></header>
+    <main>
+
+        <!-- Hero Area Start-->
+        <div class="slider-area ">
+            <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2>@Model.CONGTY.TenCty</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero Area End -->
+        <!-- job post company Start -->
+        <div class="job-post-company pt-120 pb-120">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <!-- Left Content -->
+                    <div class="col-xl-7 col-lg-8">
+                        <!-- job single -->
+                        <div class="single-job-items mb-50">
+                            <div class="job-items">
+                                <div class="company-img company-img-details">
+                                    <a href="@Url.Action("DetailCompany","Jobs",new {id = Model.CONGTY.MaCTy})"><img style="height:100px" src="~/assets/img/icon/@Model.CONGTY.Logo" alt=""></a>
+                                </div>
+                                <div class="job-tittle">
+                                    <a href="#">
+                                        <h4>@Model.ViTriLamViec</h4>
+                                    </a>
+                                    <ul>
+                                        
+                                        <li><a style="color:darkgray" href="@Url.Action("DetailCompany","Jobs",new {id = Model.CONGTY.MaCTy})">@Model.CONGTY.TenCty</a></li>
+                                        <li><i class="fas fa-map-marker-alt"></i>@Model.CONGTY.KhuVuc.TenKhuVuc</li>
+                                        <li>
+                                            @{
+                                                string Luong;
+                                                if (Model.LuongToiThieu != null && Model.LuongToiDa != null)
+                                                {
+                                                    Luong = Model.LuongToiThieu + " - " + Model.LuongToiDa;
+                                                }
+                                                else
+                                                {
+                                                    if (Model.LuongToiThieu != null)
+                                                    {
+                                                        Luong = Model.LuongToiThieu.ToString();
+                                                    }
+                                                    else
+                                                    {
+                                                        Luong = Model.LuongToiDa.ToString();
+                                                    }
+                                                }
+                                            }
+                                            @Luong$
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- job single End -->
+
+                        <div class="job-post-details">
+                            <div class="post-details1 mb-50">
+                                <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Job Description</h4>
+                                </div>
+                                <p>@Html.Raw(Model.MoTa.ToString().Replace("\n", "<br>"))</p>
+                            </div>
+                            <div class="post-details2  mb-50">
+                                <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Required Knowledge, Skills, and Abilities</h4>
+                                </div>
+                                <ul>
+                                    @Html.Raw(Model.YeuCauCV.ToString().Replace("\n", "<br>"))
+                                </ul>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                    <!-- Right Content -->
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="post-details3  mb-50">
+                            <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>Job Overview</h4>
+                            </div>
+                            <ul>
+                                <li>Posted date : <span>@String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(Model.NgayDangTin))</span></li>
+                                <li>Location : <span>@Model.CONGTY.KhuVuc.TenKhuVuc</span></li>
+                                <li>Vacancy : <span>@Model.KinhNghiem</span></li>
+                                <li>Job nature : <span>@Model.KieuCV</span></li>
+                                <li>Salary :  <span>@(Model.LuongToiThieu == null ? 0 : Model.LuongToiThieu)$ - @(Model.LuongToiDa == null? 0: Model.LuongToiDa)$</span></li>
+                                <li>Application date : <span>@String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(Model.HanNopHoSo))</span></li>
+                            </ul>
+                            <div class="apply-btn2">
+                                @if (ViewBag.Apply == "true")
+                                {
+                                    <a href="@Url.Action("ApplyCV","Jobs", new { id = @Model.MaTin})" class="btn">Apply Now</a>
+                                }else
+            {
+                <span>Bạn đã gửi thư cho công việc này rồi</span>
+            }
+
+                            </div>
+                        </div>
+                        <div class="post-details4  mb-50">
+                            <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>Company Information</h4>
+                            </div>
+                            <span>@Model.CONGTY.LinhVuc</span>
+                            <p>@Model.CONGTY.MoTa.Substring(0,200)........ <a style="color:blue" href="#">More</a></p>
+                            <ul>
+                                <li>Name: <span>@Model.CONGTY.TenCty </span></li>
+                               @* <li>Web : <span>@Model.CONGTY.website</span></li>*@
+                                <li>Email: <span>@Model.CONGTY.Email</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- job post company End -->
+
+    </main>
+</body>
+</html>
+

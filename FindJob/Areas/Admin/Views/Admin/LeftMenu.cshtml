@@ -1,0 +1,59 @@
+﻿<div class="sidebar" data-color="purple" data-background-color="white" data-image="~/assets/img/sidebar-1.jpg">
+    <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+    <div class="logo">
+        <a href="@Url.Action("Index","Admin")" class="simple-text logo-normal">
+            Admin page
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="nav-item @(ViewBag.ThongBao == "index"?"active":"")">
+                <a class="nav-link" href="@Url.Action("Index","Admin")">
+                    <i class="material-icons">dashboard</i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li class="nav-item @(ViewBag.ThongBao == "user"?"active":"")">
+                <a class="nav-link" href="@Url.Action("User","Admin")">
+                    <i class="material-icons">person</i>
+                    <p>Customer</p>
+                </a>
+            </li>
+            <li class="nav-item @(ViewBag.ThongBao == "companys"?"active":"")">
+                <a class="nav-link" href="@Url.Action("Companys","Admin")">
+                    <i class="material-icons">business</i>
+                    <p>Company</p>
+                </a>
+            </li>
+            <li class="nav-item @(ViewBag.ThongBao == "post"?"active":"")">
+                <a class="nav-link" href="@Url.Action("Post","Admin")">
+                    <i class="material-icons">work</i>
+                    <p>Post</p>
+                </a>
+            </li>
+            <li class="nav-item @(ViewBag.ThongBao == "career"?"active":"")">
+                <a class="nav-link" href="@Url.Action("career","Admin")">
+                    <i class="material-icons">library_books</i>
+                    <p>career</p>
+                </a>
+            </li>
+            <li class="nav-item @(ViewBag.ThongBao == "location"?"active":"")">
+                <a class="nav-link" href="@Url.Action("location","Admin")">
+                    <i class="material-icons">location_ons</i>
+                    <p>Location</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="@Url.Action("Logout","Account")">
+                    <i class="material-icons">logout</i>
+                    <p>Logout</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+

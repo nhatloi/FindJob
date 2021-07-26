@@ -1,0 +1,102 @@
+﻿@model FindJob.Models.TinTimViec
+@using FindJob.Models
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutCompany.cshtml";
+}
+
+<h2>New Post</h2>
+
+@using (Html.BeginForm("Create", "Companys"))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Introduction</h4>
+    @ViewBag.ThongBao
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @{var cty = (CONGTY)Session["CongTy"];}
+    <input type="hidden" name="iMaCty" value="@cty.MaCTy" />
+
+    <div class="form-group col-md-2">
+        <label class="control-label ">Chuyên ngành công việc</label><p />
+        @Html.DropDownList("NganhNghe")
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Chức vụ công việc</label><p />
+        <div class="col-md-10">
+            <input type="text" name="sViTri" required class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.KieuCV, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="sKieuCV" required  class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LuongToiThieu, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="number" min="0" name="iLuongTT" required  class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group ">
+        @Html.LabelFor(model => model.LuongToiDa, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="number" min="0" name="iLuongTD" required  class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.KinhNghiem, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="number" min="0" name="iKinhNghiem" required  class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MoTa, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea name="sMoTa" class="form-control" rows="15"></textarea>
+            @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.YeuCauCV, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea name="sYeuCauCV" class="form-control" rows="10"></textarea>
+            @Html.ValidationMessageFor(model => model.YeuCauCV, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="hidden" name="dNgayDangTin" value="@DateTime.Now" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HanNopHoSo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="date" name="dHanNopHoSo" required />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

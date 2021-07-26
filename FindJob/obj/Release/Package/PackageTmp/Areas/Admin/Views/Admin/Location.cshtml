@@ -1,0 +1,55 @@
+﻿@using FindJob.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<FindJob.Models.KhuVuc>
+
+@{
+    ViewBag.Title = "Location";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+    <div class="col-8">
+        <h2>Location</h2>
+    </div>
+    <div class="col-4">
+        <form class="navbar-form">
+            <div class="input-group no-border">
+                <input type="text" value="" name="search" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                    <i class="material-icons">search</i>
+                    <div class="ripple-container"></div>
+                </button>
+            </div>
+        </form>
+        <div style="text-align:center">
+            <div style="font-size:30px;text-align:center">
+                @Html.PagedListPager(Model, page => Url.Action("Location", new { page = page }))
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Create New", "CreateLocation")
+</p>
+<table class="table">
+    <tr>
+        <th style="width:70%">
+            Tên Khu Vực
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenKhuVuc)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditLocation", new { id = item.MaKV }) |
+                @Html.ActionLink("Delete", "DeleteLocation", new { id = item.MaKV })
+            </td>
+        </tr>
+    }
+
+</table>
+

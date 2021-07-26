@@ -1,0 +1,171 @@
+﻿@using FindJob.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<CONGTY>
+@{
+    ViewBag.Title = "ListCompany";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+</head>
+
+<body>
+
+    <header></header>
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Companys</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Area End -->
+    <!--================Blog Area =================-->
+    <section class="blog_area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <div class="blog_left_sidebar">
+                        @{ if (Model.Count() == 0)
+                            {
+                                <h2>No Data</h2>
+                            }
+                            else
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <article class="blog_item">
+                                        <div class="blog_item_img">
+                                            <img style="height:300px" class="card-img rounded-0" src="~/assets/img/banner/@item.Background" alt="">
+                                            <a href="#" class="blog_item_date" style="background-color:white">
+                                                <img style="height:100px" src="~/assets/img/icon/@item.Logo" />
+                                            </a>
+                                        </div>
+
+                                        <div class="blog_details">
+                                            <a class="d-inline-block" href="@Url.Action("DetailCompany", "Jobs", new { id = item.MaCTy })">
+                                                <h2>@item.TenCty</h2>
+                                            </a>
+                                            <p>
+                                                @if (!string.IsNullOrEmpty(item.MoTa))
+                                                {
+                                                    if (item.MoTa.Length <= 400)
+                                                    {
+                                                        @Html.Raw(@item.MoTa.Replace("\n", "<br>"))
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Raw(@item.MoTa.Substring(0, 400).Replace("\n", "<br>")) <span>........More</span>
+
+                                                    }
+                                                }
+
+
+                                            </p>
+                                            <ul class="blog-info-link">
+                                                <li><a href="http://@item.Website/"><i class="fa fa-link"></i>@item.Website</a></li>
+                                                <li><a href="#"><i class="fa fa-envelope"></i>@item.Email</a></li>
+                                            </ul>
+                                        </div>
+                                    </article>
+                                }
+                            }
+
+
+                        }
+
+
+                        @* pagination *@
+                        <nav class="blog-pagination justify-content-center d-flex">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a href="#" class="page-link" aria-label="Previous">
+                                        <i class="ti-angle-left"></i>
+                                    </a>
+                                </li>
+                                @for (int i = 1; i <= Model.PageCount; i++)
+                                {
+                                    <li class="page-item"><a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a></li>
+                                }
+                                <li class="page-item">
+                                    <a href="#" class="page-link" aria-label="Next">
+                                        <i class="ti-angle-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+
+                <!--================Right content =================-->
+                <div class="col-lg-4">
+                    <div class="blog_right_sidebar">
+                        <aside class="single_sidebar_widget search_widget">
+                            <form action="#">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="strSearch" class="form-control" placeholder='Search Keyword'
+                                               value="@ViewBag.Search"
+                                               onfocus="this.placeholder = ''"
+                                               onblur="this.placeholder = 'Search Keyword'">
+                                        <div class="input-group-append">
+                                            <button class="btns" type="submit"><i class="ti-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                                        type="submit">
+                                    Search
+                                </button>
+                            </form>
+                        </aside>
+
+                        <aside class="single_sidebar_widget post_category_widget">
+                            <h4 class="widget_title">Category</h4>
+                            <ul class="list cat-list">
+                                @foreach (var item in ViewBag.Category)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Index","Companys", new {strSearch = item })" class="d-flex">
+                                            <p>@item</p>
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </aside>
+
+                        <aside class="single_sidebar_widget popular_post_widget">
+                            <h3 class="widget_title"><i class="fas fa-map-marker-alt"></i> Location</h3>
+                            @foreach (var item in ViewBag.Location)
+                            {
+                                <div class="media post_item">
+                                    <div class="media-body">
+                                        <a href="@Url.Action("Index","Companys", new {strSearch = item.TenKhuVuc })">
+                                            <h3>@item.TenKhuVuc</h3>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================Blog Area =================-->
+</body>
+</html>

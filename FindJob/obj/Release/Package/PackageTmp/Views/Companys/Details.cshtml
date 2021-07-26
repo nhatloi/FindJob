@@ -1,0 +1,41 @@
+﻿@model IEnumerable<FindJob.Models.DonUngTuyen>
+@using FindJob.Models
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutCompany.cshtml";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            Số thứ tự
+        </th>
+        <th>
+            Người nộp đơn
+        </th>
+        <th>
+           
+        </th>
+    </tr>
+    @{ var count = 1    ;}
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @count
+    </td>
+    <td>
+        <a href="@Url.Action("Profile","User", new {id = item.MaKH})">
+            @item.KHACHHANG.HoTen
+        </a>
+    </td>
+    <td>
+        <a href="@Url.Action("SendMail","Companys",new {user = item.MaKH, post = item.MaTin})">
+            Sent Mail to Customer
+        </a>
+    </td>
+</tr>
+    count++;
+}
+
+</table>

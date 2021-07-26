@@ -1,0 +1,143 @@
+﻿@using FindJob.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<TinTimViec>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutJobs.cshtml";
+}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+</head>
+
+<body>
+    <div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="count-job mb-35">
+                    <span>Find total @Model.Count() Jobs</span>
+                    <!-- Select job items start -->
+                    <div class="select-job-items">
+                        <span>Sort by</span>
+                        <select name="sort" id="sort" onchange="ChangeSort()">
+                            <option value="time">Time</option>
+                            <option value="salary">Salary</option>
+                            <option value="expire">Work experience</option>
+                        </select>
+                        <script>
+                            function ChangeSort() {
+                                var x = document.getElementById("sort").value;
+                                var url = '@Url.Action("Index", "Jobs", new { sort = "__sort__" })';
+                                window.location.href = url.replace('__sort__', x);
+                            }
+                        </script>
+                    </div>
+                    <!--  Select job items End-->
+                </div>
+            </div>
+        </div>
+        @{
+            if (@Model.Count() == 0)
+            {
+                <h2>No data</h2>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <div class="single-job-items row">
+                        <div class="job-items col-9">
+                            <div class="company-img col-3">
+                                <a href="@Url.Action("JobsDetail","Jobs", new {id = item.MaTin })"><img style="height:100px" src="~/assets/img/icon/@item.CONGTY.Logo" alt="@item.CONGTY.TenCty"></a>
+                            </div>
+                            <div class="job-tittle job-tittle2 col-9">
+                                <a href="@Url.Action("JobsDetail","Jobs", new {id = item.MaTin })">
+                                    <h4>@item.ViTriLamViec</h4>
+                                </a>
+                                <ul>
+                                    <li>@item.CONGTY.TenCty</li>
+                                    <li><i class="fas fa-map-marker-alt"></i>@item.CONGTY.KhuVuc.TenKhuVuc</li>
+                                    <li>
+                                        @{
+                                            string Luong;
+                                            if (item.LuongToiThieu != null && item.LuongToiDa != null)
+                                            {
+                                                Luong = item.LuongToiThieu + " - " + item.LuongToiDa;
+                                            }
+                                            else
+                                            {
+                                                if (item.LuongToiThieu != null)
+                                                {
+                                                    Luong = item.LuongToiThieu.ToString();
+                                                }
+                                                else
+                                                {
+                                                    Luong = item.LuongToiDa.ToString();
+                                                }
+                                            }
+                                        }
+                                        @Luong$
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="items-link items-link2 f-right col-3">
+                            <a href="@Url.Action("JobsDetail","Jobs", new {id = item.MaTin })">@item.KieuCV</a>
+                            <span>
+                                @{
+                                    TimeSpan time = DateTime.Now - DateTime.Parse(item.NgayDangTin.ToString());
+                                    string timeago;
+                                    if (time.Days > 0)
+                                    {
+                                        timeago = time.Days + (time.Days > 1 ? " days" : " day") + " ago";
+                                    }
+                                    else if (time.Hours > 0)
+                                    {
+                                        timeago = time.Hours + (time.Hours > 1 ? " hours" : " hour") + " ago";
+                                    }
+                                    else
+                                    {
+                                        timeago = time.Minutes + (time.Minutes > 1 ? " minutes" : " minute") + " ago";
+                                    }
+                                    @timeago
+                                }
+                            </span>
+                        </div>
+                    </div>
+                }
+
+                <!--Pagination Start  -->
+                <div class="pagination-area pb-115 text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="single-wrap d-flex justify-content-center">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-start">
+                                            @{
+                                                for (int i = 1; i <= Model.PageCount; i++)
+                                                {
+                                                    <li class="page-item"><a class="page-link" href="@Url.Action("Index", new {page = i })">@i</a></li>
+                                                }
+                                            }
+                                            <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+
+    </div>
+
+
+</body>
+</html>
+
+

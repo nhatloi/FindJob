@@ -1,0 +1,181 @@
+﻿@model FindJob.Models.CONGTY
+
+@{
+    ViewBag.Title = "DetailCompany";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+</head>
+
+<body>
+    <header>
+    </header>
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+            <div class="blog_item_img">
+                <img style="height:100%;width:100%" src="~/assets/img/banner/@Model.Background" alt="">
+                <a href="#" class="blog_item_date" style="background-color:white">
+                    <img src="~/assets/img/icon/@Model.Logo" />
+                </a>
+            </div>
+    </div>
+    <!-- Hero Area End -->
+    <!--================Blog Area =================-->
+    <section class="blog_area single-post-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 posts-list">
+                    <div class="single-post">
+                        <div class="feature-img">
+                            <img class="img-fluid" src="assets/img/blog/single_blog_1.png" alt="">
+                        </div>
+                        <div class="blog_details">
+                            <h1>
+                                @Model.TenCty
+                            </h1>
+                            <ul class="blog-info-link">
+                                <li><a href="http://@Model.Website/"><i class="fa fa-link"></i>@Model.Website</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i>@Model.Email</a></li>
+                                <li><a href="#"><i class="fas fa-map-marker-alt"></i>@Model.KhuVuc.TenKhuVuc</a></li>
+                            </ul>
+                            <hr />
+                            <h2>Introduction</h2>
+                            <p class="excert">
+                                @if (!string.IsNullOrEmpty(Model.MoTa))
+                                {
+                                    @Html.Raw(Model.MoTa.Replace("\n", "<br>"))
+            }
+            else
+            {
+                <span>No data</span>
+            }
+                                
+                            </p>
+                            <hr />
+                            <h2>Jobs Post</h2>
+                            <div class="apply-process-area apply-bg">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="section-tittle white-text text-center">
+                                                <span>Overall Jobs</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Apply Process Caption -->
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="single-process text-center mb-30">
+                                                <div class="process-ion">
+                                                    <span class="flaticon-tour"></span>
+                                                </div>
+                                                <div class="process-cap">
+                                                    <h5>total number of jobs posted</h5>
+                                                    @{
+                                                        int count = 0;
+                                                        foreach (var item in ViewBag.Posts)
+                                                        {
+                                                            count += 1;
+                                                        }
+                                                    }
+                                                        <h1 style="color:red">@count</h1>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="single-process text-center mb-30">
+                                                <div class="process-ion">
+                                                    <span class="flaticon-curriculum-vitae"></span>
+                                                </div>
+                                                <div class="process-cap">
+                                                    <h5>Number of applications</h5>
+                                                    @{
+                                                        int apply = 0;
+                                                        foreach (var item in ViewBag.Apply)
+                                                        {
+                                                            apply += 1;
+                                                        }
+                                                    }
+                                                    <h1 style="color:red">@apply</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <h2>Contact</h2>
+                            <li><a href="http://@Model.Website/"><i class="fa fa-link"> Company Website: </i>@Model.Website</a></li>
+                            <li><i class="fa fa-envelope"> Email: </i>@Model.Email</li>
+                            <li><i class="fas fa-map-marker-alt"> Address:</i>@Model.DiaChi</li>   
+
+
+                        </div>
+                        </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog_right_sidebar">
+                        <aside class="single_sidebar_widget popular_post_widget">
+                            <h3 class="widget_title">Recent Post</h3>
+                           
+                            @foreach (var item in ViewBag.Posts)
+                            {
+                                <div class="media post_item">
+                                    <div class="media-body">
+                                        <a href="@Url.Action("JobsDetail","Jobs", new { id = item.MaTin })">
+                                            <h3>@item.ViTriLamViec</h3>
+                                        </a>
+                                        <p>
+                                            @{
+                                                TimeSpan time = DateTime.Now - DateTime.Parse(item.NgayDangTin.ToString());
+                                                string timeago;
+                                                if (time.Days > 0)
+                                                {
+                                                    timeago = time.Days + (time.Days > 1 ? " days" : " day") + " ago";
+                                                }
+                                                else if (time.Hours > 0)
+                                                {
+                                                    timeago = time.Hours + (time.Hours > 1 ? " hours" : " hour") + " ago";
+                                                }
+                                                else
+                                                {
+                                                    timeago = time.Minutes + (time.Minutes > 1 ? " minutes" : " minute") + " ago";
+                                                }
+                                                @timeago
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+
+
+                        </aside>
+                        <aside class="single_sidebar_widget newsletter_widget">
+                            <h4 class="widget_title">Newsletter</h4>
+                            <form action="#">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                                </div>
+                                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                                        type="submit">
+                                    Subscribe
+                                </button>
+                            </form>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ Blog Area end =================-->
+
+
+</body>
+</html>

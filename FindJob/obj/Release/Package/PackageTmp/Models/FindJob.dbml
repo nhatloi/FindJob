@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FindJob" Class="FindJobDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=findjob.mssql.somee.com;Initial Catalog=findjob;Persist Security Info=False;User ID=phannhatloi_SQLLogin_1;Packet Size=4096;Workstation ID=findjob.mssql.somee.com" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FindJobConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ADMIN" Member="ADMINs">
+    <Type Name="ADMIN">
+      <Column Name="MaAd" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TaiKhoan" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="MatKhau" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Quyen" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CONGTY" Member="CONGTies">
+    <Type Name="CONGTY">
+      <Column Name="MaCTy" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TaiKhoan" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="MatKhau" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TenCty" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LinhVuc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaKV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Logo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Background" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Website" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="DienThoai" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="CONGTY_TinTimViec" Member="TinTimViecs" ThisKey="MaCTy" OtherKey="MaCty" Type="TinTimViec" />
+      <Association Name="KhuVuc_CONGTY" Member="KhuVuc" ThisKey="MaKV" OtherKey="MaKV" Type="KhuVuc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DonUngTuyen" Member="DonUngTuyens">
+    <Type Name="DonUngTuyen">
+      <Column Name="MaTin" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaKH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="KHACHHANG_DonUngTuyen" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
+      <Association Name="TinTimViec_DonUngTuyen" Member="TinTimViec" ThisKey="MaTin" OtherKey="MaTin" Type="TinTimViec" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHACHHANG" Member="KHACHHANGs">
+    <Type Name="KHACHHANG">
+      <Column Name="MaKH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TaiKhoan" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="MatKhau" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AnhDaiDien" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FileCV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaNganh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrinhDo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamKinhNghiem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GioiTinh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="DienThoai" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NgaySinh" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Association Name="KHACHHANG_DonUngTuyen" Member="DonUngTuyens" ThisKey="MaKH" OtherKey="MaKH" Type="DonUngTuyen" />
+      <Association Name="NganhNghe_KHACHHANG" Member="NganhNghe" ThisKey="MaNganh" OtherKey="MaNganh" Type="NganhNghe" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhuVuc" Member="KhuVucs">
+    <Type Name="KhuVuc">
+      <Column Name="MaKV" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenKhuVuc" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="KhuVuc_CONGTY" Member="CONGTies" ThisKey="MaKV" OtherKey="MaKV" Type="CONGTY" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NganhNghe" Member="NganhNghes">
+    <Type Name="NganhNghe">
+      <Column Name="MaNganh" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenNganh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="NganhNghe_KHACHHANG" Member="KHACHHANGs" ThisKey="MaNganh" OtherKey="MaNganh" Type="KHACHHANG" />
+      <Association Name="NganhNghe_TinTimViec" Member="TinTimViecs" ThisKey="MaNganh" OtherKey="MaNganh" Type="TinTimViec" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TinTimViec" Member="TinTimViecs">
+    <Type Name="TinTimViec">
+      <Column Name="MaTin" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaCty" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaNganh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ViTriLamViec" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="KieuCV" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="LuongToiThieu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LuongToiDa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="KinhNghiem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="YeuCauCV" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NgayDangTin" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="HanNopHoSo" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Association Name="TinTimViec_DonUngTuyen" Member="DonUngTuyens" ThisKey="MaTin" OtherKey="MaTin" Type="DonUngTuyen" />
+      <Association Name="CONGTY_TinTimViec" Member="CONGTY" ThisKey="MaCty" OtherKey="MaCTy" Type="CONGTY" IsForeignKey="true" />
+      <Association Name="NganhNghe_TinTimViec" Member="NganhNghe" ThisKey="MaNganh" OtherKey="MaNganh" Type="NganhNghe" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,56 @@
+﻿@using FindJob.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<FindJob.Models.NganhNghe>
+@{
+    ViewBag.Title = "Career";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-8">
+        <h2>Career</h2>
+    </div>
+    <div class="col-4">
+        <form class="navbar-form">
+            <div class="input-group no-border">
+                <input type="text" value="" name="search" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                    <i class="material-icons">search</i>
+                    <div class="ripple-container"></div>
+                </button>
+            </div>
+        </form>
+
+        <div style="text-align:center">
+            <div style="font-size:30px;text-align:center">
+                @Html.PagedListPager(Model, page => Url.Action("Career", new { page = page }))
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Create New", "CreateCareer")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên Ngành
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNganh)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditCareer", new { id = item.MaNganh }) |
+                @Html.ActionLink("Delete", "DeleteCareer", new { id = item.MaNganh })
+            </td>
+        </tr>
+    }
+
+</table>
+

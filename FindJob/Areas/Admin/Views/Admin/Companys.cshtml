@@ -1,0 +1,83 @@
+﻿@using FindJob.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<FindJob.Models.CONGTY>
+
+
+@{
+    ViewBag.Title = "Companys";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+    <div class="col-8">
+        <h2>Companys</h2>
+    </div>
+    <div class="col-4">
+        <form class="navbar-form">
+            <div class="input-group no-border">
+                <input type="text" value="" name="search" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                    <i class="material-icons">search</i>
+                    <div class="ripple-container"></div>
+                </button>
+            </div>
+        </form>
+
+        <div style="text-align:center">
+            <div style="font-size:30px;text-align:center">
+                @Html.PagedListPager(Model, page => Url.Action("Companys", new { page = page }))
+            </div>
+        </div>
+    </div>
+</div>
+<div >
+    <table class="table">
+        <tr>
+            <th>
+                Tài khoản
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>
+                Tên công ty
+            </th>
+            <th>
+                Lĩnh vực hoạt động
+            </th>
+            <th>
+                Khu vực hoạt động
+            </th>
+            <th>
+                Logo Công ty
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaiKhoan)
+                </td>
+                <td>
+                    <span>@(item.TrangThai==1?"Active":"Block")</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenCty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LinhVuc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KhuVuc.TenKhuVuc)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "CompanyDetails", new { id = item.MaCTy })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+

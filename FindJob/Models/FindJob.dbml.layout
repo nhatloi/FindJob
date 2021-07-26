@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 13.625, 8.875" name="FindJob">
+  <DataContextMoniker Name="/FindJobDataContext" />
+  <nestedChildShapes>
+    <classShape Id="836d38ff-2de6-418b-928c-18602b004a46" absoluteBounds="11.375, 1.75, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/FindJobDataContext/ADMIN" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c9ff5311-f9ae-4e44-84cd-90dac2fd04be" absoluteBounds="11.39, 2.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="af242688-6532-46dd-abaa-6221ed27582c" absoluteBounds="0.75, 0.75, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/FindJobDataContext/CONGTY" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4b7a8c1b-2cf3-4d4d-ba64-26118aef0bee" absoluteBounds="0.765, 1.21, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="432cd648-085f-4db4-8f50-8acc2d5155ac" absoluteBounds="9.875, 6.75, 2, 1.3862939453124996">
+      <DataClassMoniker Name="/FindJobDataContext/DonUngTuyen" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7d4715e1-4445-40ef-90ad-da9c0abba665" absoluteBounds="9.89, 7.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="33d86b88-1d3e-44ce-8879-275bf67950b7" absoluteBounds="0.75, 4.875, 2, 3.6939111328124987">
+      <DataClassMoniker Name="/FindJobDataContext/KHACHHANG" />
+      <nestedChildShapes>
+        <elementListCompartment Id="409b1916-f028-4808-bdf9-7d29a7af138b" absoluteBounds="0.76500000000000057, 5.3350000000000009, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1a39a5aa-4600-41f3-b6dc-09285c149317" absoluteBounds="4.625, 0.5, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/FindJobDataContext/KhuVuc" />
+      <nestedChildShapes>
+        <elementListCompartment Id="34bbfd6e-cfc6-48c7-8c44-6fea028916fc" absoluteBounds="4.6400000000000006, 0.96000000000000085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="00eb842c-1b75-4b91-be91-062a3580f622" absoluteBounds="4.75, 5.625, 2, 1.1939925130208327">
+      <DataClassMoniker Name="/FindJobDataContext/NganhNghe" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ee6865b1-19d5-4951-b57e-a4416a10b66a" absoluteBounds="4.765, 6.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8b13b769-3e91-4219-bf7c-c845cae73005" absoluteBounds="8.125, 0.75, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/FindJobDataContext/TinTimViec" />
+      <nestedChildShapes>
+        <elementListCompartment Id="eac818fb-2bf3-419d-8265-a1313ab5ee5d" absoluteBounds="8.14, 1.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 7.77268246582031); (9.875 : 7.77268246582031)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FindJobDataContext/KHACHHANG/KHACHHANG_DonUngTuyen" />
+      <nodes>
+        <classShapeMoniker Id="33d86b88-1d3e-44ce-8879-275bf67950b7" />
+        <classShapeMoniker Id="432cd648-085f-4db4-8f50-8acc2d5155ac" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.625 : 1.22199625651042); (2.75 : 1.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FindJobDataContext/KhuVuc/KhuVuc_CONGTY" />
+      <nodes>
+        <classShapeMoniker Id="1a39a5aa-4600-41f3-b6dc-09285c149317" />
+        <classShapeMoniker Id="af242688-6532-46dd-abaa-6221ed27582c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.75 : 6.22199625651042); (2.75 : 6.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FindJobDataContext/NganhNghe/NganhNghe_KHACHHANG" />
+      <nodes>
+        <classShapeMoniker Id="00eb842c-1b75-4b91-be91-062a3580f622" />
+        <classShapeMoniker Id="33d86b88-1d3e-44ce-8879-275bf67950b7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.9687475 : 4.05930826822917); (8.9687475 : 7.28407098632812); (9.875 : 7.28407098632812)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FindJobDataContext/TinTimViec/TinTimViec_DonUngTuyen" />
+      <nodes>
+        <classShapeMoniker Id="8b13b769-3e91-4219-bf7c-c845cae73005" />
+        <classShapeMoniker Id="432cd648-085f-4db4-8f50-8acc2d5155ac" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 2.907900390625); (8.125 : 2.907900390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FindJobDataContext/CONGTY/CONGTY_TinTimViec" />
+      <nodes>
+        <classShapeMoniker Id="af242688-6532-46dd-abaa-6221ed27582c" />
+        <classShapeMoniker Id="8b13b769-3e91-4219-bf7c-c845cae73005" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.71875 : 5.625); (6.71875 : 3.51485682942708); (8.125 : 3.51485682942708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FindJobDataContext/NganhNghe/NganhNghe_TinTimViec" />
+      <nodes>
+        <classShapeMoniker Id="00eb842c-1b75-4b91-be91-062a3580f622" />
+        <classShapeMoniker Id="8b13b769-3e91-4219-bf7c-c845cae73005" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

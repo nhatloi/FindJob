@@ -1,0 +1,109 @@
+﻿@model FindJob.Models.TinTimViec
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutCompany.cshtml";
+}
+
+<h2>Edit Infomation Post</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Introduction</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <input type="hidden" name="iMaTin" value="@Model.MaTin"/>
+
+    <div class="form-group col-md-2">
+        <label class="control-label ">Chuyên ngành công việc</label><p />
+        @Html.DropDownList("NganhNghe")
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Chức vụ công việc</label><p />
+        <div class="col-md-10">
+            <input type="text" name="sViTri" required value="@Model.ViTriLamViec" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.KieuCV, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="sKieuCV" required value="@Model.KieuCV" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LuongToiThieu, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="number" min="0" name="iLuongTT" required value="@Model.LuongToiThieu" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group ">
+        @Html.LabelFor(model => model.LuongToiDa, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="number" min="0" name="iLuongTD" required value="@Model.LuongToiDa" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.KinhNghiem, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="number" min="0" name="iKinhNghiem" required value="@Model.KinhNghiem" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MoTa, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+           <textarea name="sMoTa" class="form-control" rows="15">@Model.MoTa</textarea>
+            @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.YeuCauCV, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea name="sYeuCauCV" class="form-control" rows="10">@Model.YeuCauCV</textarea>
+            @Html.ValidationMessageFor(model => model.YeuCauCV, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NgayDangTin, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+
+                string date = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(Model.NgayDangTin));
+            }
+            <input type="date" name="dNgayDangTin" required value="@date" />
+            @Html.ValidationMessageFor(model => model.NgayDangTin, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HanNopHoSo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+
+                string date2 = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(Model.HanNopHoSo));
+            }
+            <input type="date" name="dHanNopHoSo" required value="@date" />
+        </div>
+    </div>
+
+    <div class="form-group col-md-2">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
