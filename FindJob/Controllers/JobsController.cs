@@ -49,7 +49,7 @@ namespace FindJob.Controllers
             if (Session["TaiKhoan"] != null)
             {
                 KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
-                var don = db.DonUngTuyens.Where(n => n.MaTin == id && n.MaKH == kh.MaKH);
+                var don = db.DonUngTuyens.Where(n => n.MaTin == id && n.MaKH == kh.MaKH).SingleOrDefault();
                 if(don!= null)
                 {
                     ViewBag.Apply = "false";
