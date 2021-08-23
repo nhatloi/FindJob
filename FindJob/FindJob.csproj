@@ -282,6 +282,7 @@
     <Content Include="assets\img\logo\loder.jpg" />
     <Content Include="assets\img\logo\logo.png" />
     <Content Include="assets\img\logo\logo2_footer.png" />
+    <Content Include="assets\img\logo\logofindjob.png" />
     <Content Include="assets\img\logo\select-items-icon.jpg" />
     <Content Include="assets\js\animated.headline.js" />
     <Content Include="assets\js\bootstrap.min.js" />
